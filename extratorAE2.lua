@@ -6,8 +6,12 @@ local iteradorBd = require("iteradorBD")
 ::loop::
 
 --local lista = interface.getItemsInNetwork()
-if #(interface.getItemsInNetwork())>0 then
-    for key, value in ipairs(interface.getItemsInNetwork()) do
-    
-    end
+
+for i=1, 9 do
+    local tempItem = interface.getItemsInNetwork()[i]
+    interface.store(tempItem, db.address, i)
+    interface.setInterfaceConfiguration(i, database.address, i, tempItem.maxSize)
+    db.clear(i)
 end
+
+goto loop;
