@@ -3,6 +3,8 @@ local sides = require("sides")
 local sideWheat = sides.east
 local sideSeed = sides.up
 local sidePlanter = sides.north
+local auxInv = sides.down
+local sideCharger = sides.west
 local sleep = require("os").sleep
 local string = require("string")
 
@@ -35,7 +37,7 @@ do
     local pos
     if availableHoe.dmg <= ((availableHoe.maxDamage * 15)/100) then
         for i=1, 32 do
-            local item = transposer.getStackInSlot(sides.west, i)
+            local item = transposer.getStackInSlot(sideCharger, i)
             if item then
                 if item.dmg >= ((item.maxDamage * 60)/100) then
                     pos = i
@@ -44,9 +46,9 @@ do
             end
         end
         if pos then
-            transposer.transferItem(sidePlanter, sides.down, 1, 2, 1)
-            transposer.transferItem(sides.west, sidePlanter, 1, pos, 3)
-            transposer.transferItem(sides.down, sides.west, 1, 1, 1)
+            transposer.transferItem(sidePlanter, auxInv, 1, 2, 1)
+            transposer.transferItem(sideCharger, sidePlanter, 1, pos, 3)
+            transposer.transferItem(auxInv, sideCharger, 1, 1, 1)
         end
     end
 end
