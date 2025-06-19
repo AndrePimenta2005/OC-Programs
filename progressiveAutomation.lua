@@ -25,9 +25,31 @@ do
         end
     end
     local seedsPlant = transposer.getSlotStackSize(sidePlanter, 2)
-    if (seedsPlant == 0) or (seedsReserve == 0) then
+    if (seedsPlant == 0) and (seedsReserve == 0) then
         transposer.transferItem(sideSeed, sidePlanter, 1, 2, 2)
     end
 end
+
+do
+    local availableHoe = transposer.getStackInSlot(sidePlanter, 2)
+    local pos
+    if availableHoe.dmg >= ((availableHoe.maxDamage * 15)/100) then
+        for i=1, 32 do
+            local item = transposer.getStackInSlot(sides.west, i)
+            if item then
+                if item.dmg <= ((item.maxDamage * 60)/100) then
+                    pos = i
+                    break
+                end
+            end
+        end
+        if pos then
+            transposer.transferItem(sidePlanter, sides.down, 1, 2, 1)
+            transposer.transferItem(sides.west, sidePlanter, 1, pos, 3)
+            transposer.transferItem(sides.down, sides.west, 1, 1, 1)
+        end
+    end
+end
+
 sleep(0)
 goto redo
