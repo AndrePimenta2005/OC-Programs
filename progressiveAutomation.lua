@@ -33,11 +33,11 @@ end
 do
     local availableHoe = transposer.getStackInSlot(sidePlanter, 2)
     local pos
-    if availableHoe.dmg >= ((availableHoe.maxDamage * 15)/100) then
+    if availableHoe.dmg <= ((availableHoe.maxDamage * 15)/100) then
         for i=1, 32 do
             local item = transposer.getStackInSlot(sides.west, i)
             if item then
-                if item.dmg <= ((item.maxDamage * 60)/100) then
+                if item.dmg >= ((item.maxDamage * 60)/100) then
                     pos = i
                     break
                 end
