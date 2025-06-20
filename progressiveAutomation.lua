@@ -17,7 +17,7 @@ do
             local idItem = item.name:match(":(.*)")
             if idItem == "wheat" then
                 transposer.transferItem(sidePlanter, sideWheat, item.qty, i, 1)
-            elseif idItem == "wheat_seeds"
+            elseif idItem == "wheat_seeds" then
                 if seedsReserve == 0 then
                     seedsReserve = 1
                 else
