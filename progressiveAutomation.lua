@@ -14,7 +14,7 @@ do
     for i = 5, 13 do
         local item = transposer.getStackInSlot(sidePlanter, i)
         if item then
-            local idItem = item.id:match(":(%a+)")
+            local idItem = item.name:match(":(.*)")
             if idItem == "wheat" then
                 transposer.transferItem(sidePlanter, sideWheat, item.qty, i, 1)
             elseif idItem == "wheat_seeds"
